@@ -251,12 +251,14 @@ To specify JVM options for a specific pod first deploy the [cassandra-jvm-opts-c
 Add the following sections to the StatefulSet (examples are included in comments which can simply be uncommented):
 
 ```yaml
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: sysdigcloud-cassandra
 ...
 spec:
+  selector:
+...
   template:
 ...
     spec:

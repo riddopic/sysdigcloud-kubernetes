@@ -69,11 +69,15 @@ spec:
     app: sysdigcloud
     role: mysql
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-mysql
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: mysql
   template:
     metadata:
       labels:

@@ -13,11 +13,14 @@ spec:
     app: sysdigcloud
     role: redis
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-redis
 spec:
+  selector:
+    app: sysdigcloud
+    role: redis
   template:
     metadata:
       labels:
