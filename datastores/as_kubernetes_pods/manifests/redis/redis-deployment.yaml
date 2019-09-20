@@ -19,8 +19,9 @@ metadata:
   name: sysdigcloud-redis
 spec:
   selector:
-    app: sysdigcloud
-    role: redis
+    matchLabels:
+      app: sysdigcloud
+      role: redis
   template:
     metadata:
       labels:
