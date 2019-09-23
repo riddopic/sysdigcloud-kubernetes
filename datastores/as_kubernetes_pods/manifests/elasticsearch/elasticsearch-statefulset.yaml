@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: sysdigcloud-elasticsearch
@@ -9,6 +9,12 @@ metadata:
     component: elasticsearch
     role: elasticsearch
 spec:
+  selector:
+    matchLabels:
+        affinity: elasticsearch
+        app: sysdigcloud
+        component: elasticsearch
+        role: elasticsearch
   updateStrategy:
     type: OnDelete
   serviceName: sysdigcloud-elasticsearch

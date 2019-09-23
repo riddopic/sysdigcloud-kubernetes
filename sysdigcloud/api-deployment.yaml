@@ -1,9 +1,16 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-api
+  labels:
+    app: sysdigcloud
+    role: api
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: api
   replicas: 1
   template:
     metadata:
