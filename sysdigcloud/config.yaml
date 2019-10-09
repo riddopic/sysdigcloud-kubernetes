@@ -103,7 +103,7 @@ data:
   ####################################
   # Required: Elasticsearch URL. If Elasticsearch is deployed as a Kubernetes service,
   # this will be the service name. If using an external database, put the proper address
-  elasticsearch.url: http://sysdigcloud-elasticsearch
+  elasticsearch.hostname: sysdigcloud-elasticsearch
   # Optional: Elasticsearch JVM options. For heavy load environments this will override the defaults (e.g. -Xms6G -Xmx6G)
   elasticsearch.jvm.options: "-Xms12g -Xmx12g"
   #Username required for the Search Guard authentication
@@ -203,6 +203,14 @@ data:
   # anchore.no.proxy: 127.0.0.1, localhost, sysdigcloud-anchore-core
 
   ####################################
+  # AUDIT EVENTS LOGGING #
+  ####################################
+  # The following settings are needed for configuring AUDIT EVENTS LOGGING
+  audit.events.storage.type: "MYSQL"
+  audit.events.retention.days: "14"
+  audit.events.max.events.per.day: "1000"
+
+  ####################################
   # ======= BEGIN DEPRECATED LDAP OPTIONS =======
   ####################################
   # NOTE: The following series of LDAP settings are deprecated starting
@@ -213,7 +221,7 @@ data:
   # you can remove these LDAP settings from this ConfigMap and configure
   # LDAP via the API as described in the following Support article:
   #
-  #   https://sysdigdocs.atlassian.net/wiki/spaces/LDAP/pages/203620377/LDAP+Authentication+Configuration
+  #   https://sysdigdocs.atlassian.net/wiki/spaces/Platform/pages/318931076/LDAP+Authentication+Configuration+for+Platform+v.1586
   #
   # (Deprecated - formerly Required): enable or disable Sysdig Cloud LDAP integration
   sysdigcloud.ldap.enabled: "false"

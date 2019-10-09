@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: quay.io/sysdig/sysdigcloud-backend:2172-nginx
+          image: quay.io/sysdig/sysdigcloud-backend:2.4.0.2587-nginx
           volumeMounts:
             - name: ssl
               mountPath: /opt/certs/
@@ -28,7 +28,7 @@ spec:
                   name: sysdigcloud-config
                   key: api.url
         - name: collector
-          image: quay.io/sysdig/sysdigcloud-backend:2172-allinone-java
+          image: quay.io/sysdig/sysdigcloud-backend:2.4.0.2587-allinone-java
           resources:
             requests:
               memory: "10G"
@@ -75,6 +75,38 @@ spec:
                 configMapKeyRef:
                   name: sysdigcloud-config
                   key: cassandra.datacenter.name
+            - name: ES_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: sysdigcloud-config
+                  key: elasticsearch.hostname
+            ## If enabling elasticsearch auth, uncomment ES_SEARCHGUARD_USER, ES_SEARCHGUARD_ENABLED, and ES_SEARCHGUARD_PASSWORD env vars
+            # - name: ES_SEARCHGUARD_USER
+            #   valueFrom:
+            #     configMapKeyRef:
+            #       name: sysdigcloud-config
+            #       key: elasticsearch.user
+            # - name: ES_SEARCHGUARD_ENABLED
+            #   valueFrom:
+            #     configMapKeyRef:
+            #       name: sysdigcloud-config
+            #       key: elasticsearch.searchguard.enabled
+            # - name: ES_SEARCHGUARD_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: sg-admin-secret
+            #       key: password
+          ## If you're running multiple replicas, it is advisable to configure the limits below. Limiting resources
+          ## can help stabilize rolling updates later down the road.
+          # resources:
+          #   # minimum resources for container
+          #   requests:
+          #     memory: "13G"
+          #     cpu: "4"
+          #   # maximum resources for container
+          #   limits:
+          #     memory: "64G"
+          #     cpu: "32"
           readinessProbe:
             tcpSocket:
               port: 6000
