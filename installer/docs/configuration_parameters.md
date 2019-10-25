@@ -291,7 +291,7 @@ elasticsearch:
   hostname: external.elasticsearch.cluster
 ```
 
-## **elasticsearch.searchguard.enabled**
+## ~~**elasticsearch.searchguard.enabled**~~ (**Deprecated**)
 **Required**: `false`<br>
 **Description**: Enables user authentication and TLS-encrypted data-in-transit
 with [Searchguard](https://search-guard.com/)
@@ -311,7 +311,7 @@ elasticsearch:
     enabled: false
 ```
 
-## **elasticsearch.searchguard.adminUser**
+## ~~**elasticsearch.searchguard.adminUser**~~ (**Deprecated**)
 **Required**: `false`<br>
 **Description**: The user bound to the ElasticSearch Searchguard admin role.<br>
 **Options**: <br>

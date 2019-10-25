@@ -56,8 +56,7 @@ This install assumes the Kubernetes cluster has network access to pull images fr
 
 - Copy the current version sysdig-chart/values.yaml to your working directory.
   ```bash
-  wget \
-    https://raw.githubusercontent.com/draios/installer/2.4.1-3/sysdig-chart/values.yaml
+  wget https://github.com/draios/sysdigcloud-kubernetes/blob/installer/installer/values.yaml
   ```
 - Edit the following values:
   - [`size`](docs/configuration_parameters.md#size): Specifies the size of the cluster. Size
@@ -202,7 +201,7 @@ the installation machine.
 
 - Copy the current version sysdig-chart/values.yaml to your working directory.
   ```bash
-  wget \ https://raw.githubusercontent.com/draios/installer/2.4.1-3/sysdig-chart/values.yaml
+  wget https://github.com/draios/sysdigcloud-kubernetes/blob/installer/installer/values.yaml
   ```
 - Edit the following values:
   - [`size`](docs/configuration_parameters.md#size): Specifies the size of the cluster. Size
