@@ -1,4 +1,16 @@
-# Configuration
+# Configuration Parameters
+
+## **quaypullsecret**
+**Required**: `true`<br>
+**Description**: quay.io credentials provided with your Sysdig purchase confirmation
+  mail.<br>
+**Options**:<br>
+**Default**: <br>
+**Example**:
+
+```yaml
+quaypullsecret: Y29tZS13b3JrLWF0LXN5c2RpZwo=
+```
 
 ## **schema_version**
 **Required**: `true`<br>
@@ -148,7 +160,7 @@ scripts: generate diff
 **Required**: `false`<br>
 **Description**: The name of the preconfigured [storage
 class](https://kubernetes.io/docs/concepts/storage/storage-classes/). If the
-storage class does not exist, installer will attempt to create it using the
+storage class does not exist, Installer will attempt to create it using the
 `storageClassProvisioner` as the provisioner. This has no effect if
 `storageClassProvisioner` is configured to `none`.<br>
 **Options**:<br>
@@ -283,12 +295,12 @@ elasticsearch:
 **Required**: `false`<br>
 **Description**: Enables user authentication and TLS-encrypted data-in-transit
 with [Searchguard](https://search-guard.com/)
-If Searchguard is enabled installer does the following in the provided order:
+If Searchguard is enabled Installer does the following in the provided order:
   1. Checks for user provided certificates under certs/elasticsearch-tls-certs if present uses that to setup elasticsearch(es) cluster.
   2. Checks for existing searchguard certificates in the provided environment to setup ES cluster. (applicable for upgrades)
-  3. If neither of them are present installer autogenerates searchguard certificates and uses them to setup es cluster.
-  
-  
+  3. If neither of them are present Installer autogenerates searchguard certificates and uses them to setup es cluster.
+
+
 **Options**: `true|false`<br>
 **Default**: `false`<br>
 **Example**:
@@ -374,12 +386,12 @@ hostPathCustomPaths:
 ```
 
 ## **hostPathCustomPaths.mysql**
-**Required**: `false`  
+**Required**: `false`<br>
 **Description**: The directory to bind mount mysql pod's `/var/lib/mysql` to
 on the host. This is relevant only when `storageClassProvisioner` is
-`hostPath`.  
-**Options**:   
-**Default**: `/var/lib/mysql`  
+`hostPath`.<br>
+**Options**:<br>
+**Default**: `/var/lib/mysql`<br>
 **Example**:
 
 ```yaml
@@ -920,7 +932,7 @@ sysdig:
   * [`sysdig.ingressNetworkingInsecureApiNodePort`](#sysdigingressnetworkinginsecureapinodeport)
   * [`sysdig.ingressNetworkingApiNodePort`](#sysdigingressnetworkingapinodeport)
   * [`sysdig.ingressNetworkingCollectorNodePort`](#sysdigingressnetworkingcollectornodeport)
-  
+
 **Options**:
 [`hostnetwork`](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#host-namespaces)|[`loadbalancer`](https://kubernetes.io/docs/concepts/services-networking/#loadbalancer)|[`nodeport`](https://kubernetes.io/docs/concepts/services-networking/#nodeport)
 
@@ -935,7 +947,7 @@ sysdig:
 ## **sysdig.ingressNetworkingInsecureApiNodePort**
 **Required**: `false`<br>
 **Description**: When [`sysdig.ingressNetworking`](#sysdigingressnetworking)
-is configured as `nodeport`, this is the NodePort requested by installer
+is configured as `nodeport`, this is the NodePort requested by Installer
 from Kubernetes for the Sysdig non-TLS API endpoint.<br>
 **Options**: <br>
 **Default**: `30000`
@@ -949,7 +961,7 @@ sysdig:
 ## **sysdig.ingressNetworkingApiNodePort**
 **Required**: `false`<br>
 **Description**: When [`sysdig.ingressNetworking`](#sysdigingressnetworking)
-is configured as `nodeport`, this is the NodePort requested by installer
+is configured as `nodeport`, this is the NodePort requested by Installer
 from Kubernetes for the Sysdig TLS API endpoint.<br>
 **Options**: <br>
 **Default**: `30001`
@@ -963,7 +975,7 @@ sysdig:
 ## **sysdig.ingressNetworkingCollectorNodePort**
 **Required**: `false`<br>
 **Description**: When [`sysdig.ingressNetworking`](#sysdigingressnetworking)
-is configured as `nodeport`, this is the NodePort requested by installer
+is configured as `nodeport`, this is the NodePort requested by Installer
 from Kubernetes for the Sysdig collector endpoint.<br>
 **Options**: <br>
 **Default**: `30002`
@@ -1187,7 +1199,7 @@ sysdig:
 that can be reached without going through the configured web proxy. This is
 only relevant if [`sysdig.proxy.enable`](#sysdigproxyenable) is configured and
 should only be used if there is an intent to override the defaults provided by
-installer otherwise consider [`sysdig.proxy.noProxy`](#sysdigproxynoproxy)
+Installer otherwise consider [`sysdig.proxy.noProxy`](#sysdigproxynoproxy)
 instead.<br>
 **Options**:<br>
 **Default**: `127.0.0.1, localhost, sysdigcloud-anchore-core, anchore-reports`<br>
@@ -3241,7 +3253,7 @@ sysdig:
 
 ## **sysdig.certificate.generate**
 **Required**: `false`<br>
-**Description**: Determines if installer should generate self-signed
+**Description**: Determines if Installer should generate self-signed
 certificates for the domain configured in `sysdig.dnsName`.<br>
 **Options**: `true|false`<br>
 **Default**: `true`<br>
@@ -3317,7 +3329,7 @@ sysdig:
 
 ## **sysdig.collector.certificate.generate**
 **Required**: `false`<br>
-**Description**: This determines if installer should generate self-signed<br>
+**Description**: This determines if Installer should generate self-signed<br>
 certificates for the domain configured in `sysdig.collector.dnsName`.<br>
 **Options**: `true|false`<br>
 **Default**: `true`<br>
