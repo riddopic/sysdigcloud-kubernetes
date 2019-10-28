@@ -1014,12 +1014,12 @@ sysdig:
 **Required**: `false`<br>
 **Description**: The docker image tag of the Sysdig Monitor.<br>
 **Options**:<br>
-**Default**: 2.4.1.2626<br>
+**Default**: 2.5.0.5132<br>
 **Example**:
 
 ```yaml
 sysdig:
-  monitorVersion: 2.4.1.2626
+  monitorVersion: 2.5.0.5132
 ```
 
 ## **sysdig.mysqlHa**
