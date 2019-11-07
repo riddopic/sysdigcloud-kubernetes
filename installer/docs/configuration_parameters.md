@@ -756,6 +756,20 @@ sysdig:
    password: cassandrapassword
 ```
 
+## **sysdig.cassandra.workloadName**
+**Required**: `false`<br>
+**Description**: Name assigned to the Cassandra objects(statefulset and
+service)<br>
+**Options**: <br>
+**Default**: `sysdigcloud-cassandra`<br>
+**Example**:
+
+```yaml
+sysdig:
+ cassandra:
+   workloadName: sysdigcloud-cassandra
+```
+
 ## **sysdig.cassandra.customOverrides**
 **Required**: `false`<br>
 **Description**: The custom overrides of Cassandra's default configuration. The parameter
@@ -1068,6 +1082,35 @@ sysdig:
 ```yaml
 sysdig:
   mysqlVersion: 5.6.44.0
+```
+
+## **sysdig.mysql.external**
+**Required**: `false`<br>
+**Description**: If set, the installer does not create a local mysql cluster
+instead it sets up the sysdig platform to connect to the configured
+[`sysdig.mysql.hostname`](#sysdigmysqlhostname) <br>
+**Options**: `true|false`<br>
+**Default**: `false`<br>
+**Example**:
+
+```yaml
+sysdig:
+  mysql:
+    external: true
+```
+
+## **sysdig.mysql.hostname**
+**Required**: `false`<br>
+**Description**: Name of the mySQL host that the sysdig platform components
+should connect to.<br>
+**Options**: <br>
+**Default**: <br>
+**Example**:
+
+```yaml
+sysdig:
+  mysql:
+    hostname: mysql.foo.com
 ```
 
 ## **sysdig.mysql.hostPathNodes**
@@ -3065,6 +3108,27 @@ sysdig:
 ```yaml
 sysdig:
   smtpUser: bob+alice@gmail.com<br>
+```
+
+## **sysdig.tolerations**
+**Required**: `false`<br>
+**Description**:
+[Toleration](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+that will be created on Sysdig platform pods, this can be combined with
+[nodeaffinityLabel.key](#nodeaffinityLabelkey) and
+[nodeaffinityLabel.value](#nodeaffinityLabelvalue) to ensure only Sysdig
+Platform pods run on particular nodes<br>
+**Options**:<br>
+**Default**:<br>
+**Example**:
+
+```yaml
+sysdig:
+  tolerations:
+    - key: "dedicated"
+      operator: "Equal"
+      value: sysdig
+      effect: "NoSchedule"
 ```
 
 ## **sysdig.anchoreCoreReplicaCount**
