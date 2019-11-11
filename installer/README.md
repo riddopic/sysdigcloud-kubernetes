@@ -56,7 +56,7 @@ This install assumes the Kubernetes cluster has network access to pull images fr
 
 - Copy the current version sysdig-chart/values.yaml to your working directory.
   ```bash
-  wget https://raw.githubusercontent.com/draios/sysdigcloud-kubernetes/installer/installer/values.yaml
+  wget https://github.com/draios/sysdigcloud-kubernetes/blob/installer/installer/values.yaml
   ```
 - Edit the following values:
   - [`size`](docs/configuration_parameters.md#size): Specifies the size of the cluster. Size
@@ -110,7 +110,7 @@ This install assumes the Kubernetes cluster has network access to pull images fr
   Options](#airgapped-installation-options).)
   ```bash
   docker run -e HOST_USER=$(id -u) -e KUBECONFIG=/.kube/config \
-    -v ~/.kube:/.kube:Z -v $(pwd):/manifests:Z \quay.io/sysdig/installer:2.5.0-1
+    -v ~/.kube:/.kube:Z -v $(pwd):/manifests:Z \quay.io/sysdig/installer:2.5.0.2
   ```
 - On successful run of Installer towards the end of your terminal you should
   see the below:
@@ -154,7 +154,7 @@ docker run -e HOST_USER=$(id -u) -e KUBECONFIG=/.kube/config \
   -v $(pwd):/manifests:Z \
   -v /var/run/docker.sock:/var/run/docker.sock:Z \
   -v ~/.docker:/root/docker:Z \
-  quay.io/sysdig/installer:2.5.0-1
+  quay.io/sysdig/installer:2.5.0.2
 ```
 
 ## Full Airgap Install
@@ -187,11 +187,11 @@ the installation machine.
 - Follow the Docker Log In to quay.io steps under the Access Requirements section.
 - Pull the image containing the self-extracting tar:
   ```bash
-  docker pull quay.io/sysdig/installer:2.5.0-1-uber
+  docker pull quay.io/sysdig/installer:2.5.0.2-uber
   ```
 - Extract the tarball:
   ```bash
-  docker create --name uber_image quay.io/sysdig/installer:2.5.0-1-uber
+  docker create --name uber_image quay.io/sysdig/installer:2.5.0.2-uber
   docker cp uber_image:/sysdig_installer.tar.gz .
   docker rm uber_image
   ```
@@ -201,7 +201,7 @@ the installation machine.
 
 - Copy the current version sysdig-chart/values.yaml to your working directory.
   ```bash
-  wget https://raw.githubusercontent.com/draios/sysdigcloud-kubernetes/installer/installer/values.yaml
+  wget https://github.com/draios/sysdigcloud-kubernetes/blob/installer/installer/values.yaml
   ```
 - Edit the following values:
   - [`size`](docs/configuration_parameters.md#size): Specifies the size of the cluster. Size
@@ -278,16 +278,3 @@ For the full dictionary of configuration parameters, see:
 # Advanced Configuration
 
 For advanced configuration option see [advanced.md](docs/advanced.md)
-
-# Resource requirements
-
-The below table represents the amount of resources for various cluster sizes
-in their default configuration. The `Redis HA` column indicates extra amount
-of resources required if `redisHa: true` is configured.
-
-|Application | SMALL | | GB | GB | GB | |	MEDIUM | | GB |	GB | GB | |	LARGE | | GB | GB | GB | |
-|------------|-------|-|----|----|----|-|--------|-|----|----|----|-|-------|-|----|----|----|-|
-| | cpu requests | cpu limits | memory requests | memory limits | storage |  | cpu requests | cpu limits | memory requests | memory limits | storage | |  | cpu requests | cpu limits | memory requests | memory limits | storage|
-|Platform | 8.1 | 36 | 14.6 | 50 | 115 |  | 35.6 | 118 | 42.1 | 142 | 685 |  |  | 82.1 | 298 | 142.1 | 304 | 1885|
-|Monitor | 5.6 | 18 | 10.1 | 30 | 85 |  | 30.6 | 98 | 37.1 | 122 | 625 |  |  | 76.1 | 278 | 136.1 | 280 | 1825|
-|Redis HA | 0.45 | 6.9 | 0.345 | 6.06 |  |  | 0.45 | 6.9 | 0.345 | 6.06 |  |  |  | 0.45 | 6.9 | 0.345 | 6.06 | |
