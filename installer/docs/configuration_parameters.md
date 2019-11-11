@@ -670,7 +670,7 @@ sysdig:
 
 ```yaml
 sysdig:
-  cassandraVersion: 2.1.21.13
+  cassandraVersion: 2.1.21.16
 ```
 
 ## **sysdig.cassandra.external**
@@ -921,7 +921,7 @@ sysdig:
 
 ```yaml
 sysdig:
-  elasticsearchVersion: 5.6.16.12
+  elasticsearchVersion: 5.6.16.14
 ```
 
 ## **sysdig.haproxyVersion**
@@ -1057,19 +1057,19 @@ sysdig:
 
 ```yaml
 sysdig:
-  mysqlVersion: 8.0.16.2
+  mysqlHaVersion: 8.0.16.2
 ```
 
 ## **sysdig.mysqlHaAgentVersion**
 **Required**: `false`<br>
 **Description**: The docker image tag of MySQL Agent used for HA.<br>
 **Options**:<br>
-**Default**: 0.1.15<br>
+**Default**: 0.1.1.5<br>
 **Example**:
 
 ```yaml
 sysdig:
-  mysqlVersion: 0.1.15
+  mysqlHaAgentVersion: 0.1.1.5
 ```
 
 ## **sysdig.mysqlVersion**
@@ -1208,12 +1208,12 @@ sysdig:
 **Description**: Docker image tag of Postgres, relevant when configured `apps`
 is `monitor secure`.<br>
 **Options**:<br>
-**Default**: 10.6.10<br>
+**Default**: 10.6.11<br>
 **Example**:
 
 ```yaml
 sysdig:
-  postgresVersion: 10.6.10
+  postgresVersion: 10.6.11
 ```
 
 ## **sysdig.postgresql.hostPathNodes**
@@ -1379,25 +1379,25 @@ sysdig:
 **Required**: `false`<br>
 **Description**: Docker image tag of Redis.<br>
 **Options**:<br>
-**Default**: 4.0.12.6<br>
+**Default**: 4.0.12.7<br>
 **Example**:
 
 ```yaml
 sysdig:
-  redisVersion: 4.0.12.6
+  redisVersion: 4.0.12.7
 ```
 
 ## **sysdig.redisHaVersion**
-**Required**: `true`<br>
+**Required**: `false`<br>
 **Description**: Docker image tag of HA Redis, relevant when configured
 `sysdig.redisHa` is `true`.<br>
 **Options**:<br>
-**Default**: 4.0.12.6<br>
+**Default**: 4.0.12.8-ha<br>
 **Example**:
 
 ```yaml
 sysdig:
-  redisHaVersion: 4.0.12.6
+  redisHaVersion: 4.0.12.8-ha
 ```
 
 ## **sysdig.redisHa**
@@ -3018,12 +3018,12 @@ sysdig:
 **Description**: Docker image tag of rsyslog, relevant only when configured
 `deployment` is `kubernetes`.<br>
 **Options**:<br>
-**Default**: 8.34.0.5<br>
+**Default**: 8.34.0.6<br>
 **Example**:
 
 ```yaml
 sysdig:
-  rsyslogVersion: 8.34.0.5
+  rsyslogVersion: 8.34.0.6
 ```
 
 ## **sysdig.smtpFromAddress**
