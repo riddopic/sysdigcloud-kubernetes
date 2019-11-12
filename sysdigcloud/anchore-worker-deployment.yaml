@@ -38,7 +38,7 @@ spec:
         #     secretName: sysdigcloud-anchore-custom-certs
       containers:
       - name: anchore-worker
-        image: quay.io/sysdig/anchore:v0.4.1.1
+        image: quay.io/sysdig/anchore:0.5.0.1
         imagePullPolicy:
         resources:
           {}
@@ -99,7 +99,7 @@ spec:
         #   valueFrom:
         #     configMapKeyRef:
         #       name: sysdigcloud-config
-        #       key: anchore.no_proxy
+        #       key: anchore.no.proxy
         ports:
         - name: analyzer-api
           containerPort: 8084

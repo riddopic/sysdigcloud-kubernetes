@@ -14,11 +14,15 @@ spec:
     app: sysdigcloud
     role: mysql-router
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-mysql-router
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: mysql-router
   replicas: 3
   template:
     metadata:

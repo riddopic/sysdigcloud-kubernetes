@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: sysdigcloud-cassandra
@@ -39,7 +39,7 @@ spec:
                 - cassandra
             topologyKey: kubernetes.io/hostname
       containers:
-        - image: quay.io/sysdig/cassandra:2.1.21.15
+        - image: quay.io/sysdig/cassandra:2.1.21.16
           name: cassandra
           env:
             - name: CASSANDRA_SERVICE

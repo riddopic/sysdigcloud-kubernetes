@@ -1,9 +1,16 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-worker
+  labels:
+    app: sysdigcloud
+    role: worker
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: worker
   replicas: 1
   template:
     metadata:
@@ -13,9 +20,9 @@ spec:
     spec:
       containers:
         - name: email-renderer
-          image: quay.io/sysdig/sysdigcloud-backend:2.4.1.2626-email-renderer
+          image: quay.io/sysdig/sysdigcloud-backend:2.5.0.5132-email-renderer
         - name: worker
-          image: quay.io/sysdig/sysdigcloud-backend:2.4.1.2626-allinone-java
+          image: quay.io/sysdig/sysdigcloud-backend:2.5.0.5132-allinone-java
           volumeMounts:
             - name: config
               mountPath: /opt/kubernets_config

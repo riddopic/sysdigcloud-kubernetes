@@ -1,9 +1,16 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-collector
+  labels:
+    app: sysdigcloud
+    role: collector
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: collector
   replicas: 1
   template:
     metadata:
@@ -13,7 +20,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: quay.io/sysdig/sysdigcloud-backend:2.4.1.2626-nginx
+          image: quay.io/sysdig/sysdigcloud-backend:2.5.0.5132-nginx
           volumeMounts:
             - name: ssl
               mountPath: /opt/certs/
@@ -28,7 +35,7 @@ spec:
                   name: sysdigcloud-config
                   key: api.url
         - name: collector
-          image: quay.io/sysdig/sysdigcloud-backend:2.4.1.2626-allinone-java
+          image: quay.io/sysdig/sysdigcloud-backend:2.5.0.5132-allinone-java
           volumeMounts:
             - name: config
               mountPath: /opt/kubernets_config
