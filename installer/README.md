@@ -110,7 +110,7 @@ This install assumes the Kubernetes cluster has network access to pull images fr
   Options](#airgapped-installation-options).)
   ```bash
   docker run -e HOST_USER=$(id -u) -e KUBECONFIG=/.kube/config \
-    -v ~/.kube:/.kube:Z -v $(pwd):/manifests:Z \quay.io/sysdig/installer:2.5.0.2
+    -v ~/.kube:/.kube:Z -v $(pwd):/manifests:Z \quay.io/sysdig/installer:2.5.0-2
   ```
 - On successful run of Installer towards the end of your terminal you should
   see the below:
@@ -154,7 +154,7 @@ docker run -e HOST_USER=$(id -u) -e KUBECONFIG=/.kube/config \
   -v $(pwd):/manifests:Z \
   -v /var/run/docker.sock:/var/run/docker.sock:Z \
   -v ~/.docker:/root/docker:Z \
-  quay.io/sysdig/installer:2.5.0.2
+  quay.io/sysdig/installer:2.5.0-2
 ```
 
 ## Full Airgap Install
