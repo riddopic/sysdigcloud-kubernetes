@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sysdigcloud-nats-streaming
+  labels:
+    app: sysdigcloud
+    role: nats-streaming
+spec:
+  sessionAffinity: None
+  type: ClusterIP
+  ports:
+    - port: 4222
+      targetPort: 4222
+      protocol: TCP
+  selector:
+    app: sysdigcloud
+    role: nats-streaming

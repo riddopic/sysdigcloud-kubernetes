@@ -20,8 +20,12 @@ spec:
         paths:
           - backend:
               serviceName: sysdigcloud-api
-              servicePort: 8080 
+              servicePort: 8080
             path: /
+          - backend:
+              serviceName: sysdigcloud-activity-audit-api
+              servicePort: 7000
+            path: /api/v1/activityAudit
   tls:
     - hosts:
         - <EXTERNAL-DNS-NAME>

@@ -1,0 +1,31 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sysdigcloud-activity-audit-janitor
+  labels:
+    app: sysdigcloud
+    role: activity-audit-janitor
+spec:
+  schedule: "0 */12 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: activity-audit-janitor
+            image: quay.io/sysdig/activity-audit-janitor:3.0.0.5309
+            args:
+            - -retention
+            - "14"
+            - -threshold
+            - "1000000"
+            - -yes
+            env:
+            - name: ELASTICSEARCH_ENDPOINTS
+              valueFrom:
+                configMapKeyRef:
+                  name: sysdigcloud-config
+                  key: activityaudit.elasticsearch.endpoints
+          imagePullSecrets:
+          - name: sysdigcloud-pull-secret

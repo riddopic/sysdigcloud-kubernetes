@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysdigcloud-activity-audit-api
+  labels:
+    app: sysdigcloud
+    role: activity-audit-api
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: activity-audit-api
+  template:
+    metadata:
+      labels:
+        app: sysdigcloud
+        role: activity-audit-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "25000"
+    spec:
+      imagePullSecrets:
+      - name: sysdigcloud-pull-secret
+      containers:
+      - name: activity-audit-api
+        image: quay.io/sysdig/activity-audit-api:3.0.0.5308
+        resources: {}
+        ports:
+          - name: api
+            containerPort: 7000
+          - name: metrics
+            containerPort: 25000
+        env:
+          - name: ELASTICSEARCH_ENDPOINTS
+            valueFrom:
+              configMapKeyRef:
+                name: sysdigcloud-config
+                key: activityaudit.elasticsearch.endpoints
+          - name: LEGACY_BACKEND_ENDPOINT
+            valueFrom:
+              configMapKeyRef:
+                name: sysdigcloud-config
+                key: activityaudit.backend.endpoint

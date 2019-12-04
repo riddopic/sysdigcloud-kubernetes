@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysdigcloud-nats-streaming
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: nats-streaming
+  template:
+    metadata:
+      labels:
+        app: sysdigcloud
+        role: nats-streaming
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "7777"
+    spec:
+      containers:
+      - name: nats-streaming
+        image: quay.io/sysdig/nats-streaming:0.16.2.1
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        ports:
+        - containerPort: 4222
+        - containerPort: 8222
+        args:
+        - -cid
+        - "secure-audit-cluster"
+        - -m
+        - "8222"
+      - name: nats-exporter
+        image: quay.io/sysdig/nats-exporter:0.6.0.1
+        ports:
+        - containerPort: 7777
+        args:
+        - -connz
+        - -subz
+        - -channelz
+        - http://localhost:8222
+      imagePullSecrets:
+        - name: sysdigcloud-pull-secret

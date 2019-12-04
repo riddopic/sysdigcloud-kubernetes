@@ -112,6 +112,13 @@ data:
   # verifySSL only used if user has their own secure Elasticsearch cluster and would like to toggle hostname verification
   # elasticsearch.verifySSL: "true"
   ####################################
+  ######### NATS STREAMING #########
+  ####################################
+  nats.enabled: "true"
+  nats.forward.enabled: "true"
+  nats.cluster.id: "secure-audit-cluster"
+  nats.url: "nats://sysdigcloud-nats-streaming:4222"
+  ####################################
   ######### SMTP #########
   ####################################
   # Optional: SMTP server address, needed for Sysdig Cloud to send email notifications
@@ -203,7 +210,13 @@ data:
   # anchore.worker.https.proxy: https://user:password@proxy.corp.example2.com:8128
   #
   # anchore.no.proxy: 127.0.0.1, localhost, sysdigcloud-anchore-core
-  
+
+  ####################################
+  # ACTIVITY AUDIT #
+  ####################################
+  activityaudit.backend.endpoint: "http://sysdigcloud-api:8080"
+  activityaudit.elasticsearch.endpoints: "http://sysdigcloud-elasticsearch:9200"
+
   ####################################
   # AUDIT EVENTS LOGGING #
   ####################################
