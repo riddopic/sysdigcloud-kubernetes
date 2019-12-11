@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysdigcloud-activity-audit-worker
+  labels:
+    app: sysdigcloud
+    role: activity-audit-worker
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: activity-audit-worker
+  template:
+    metadata:
+      labels:
+        app: sysdigcloud
+        role: activity-audit-worker
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "25000"
+    spec:
+      imagePullSecrets:
+      - name: sysdigcloud-pull-secret
+      containers:
+      - name: activity-audit-worker
+        image: quay.io/sysdig/activity-audit-worker:3.0.0.5309
+        ports:
+          - name: metrics
+            containerPort: 25000
+        resources: {}
+        env:
+          - name: NATS_SERVER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: sysdigcloud-config
+                key: nats.url
+          - name: NATS_CLUSTER_ID
+            valueFrom:
+              configMapKeyRef:
+                name: sysdigcloud-config
+                key: nats.cluster.id
+          - name: NATS_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: ELASTICSEARCH_ENDPOINTS
+            valueFrom:
+              configMapKeyRef:
+                name: sysdigcloud-config
+                key: activityaudit.elasticsearch.endpoints
+#         - name: ELASTICSEARCH_TLS_SKIP_CHECK
+#           value: "yes"
+#         - name: ELASTICSEARCH_SEARCHGUARD_ENABLED
+#           valueFrom:
+#             configMapKeyRef:
+#               name: sysdigcloud-config
+#               key: elasticsearch.searchguard.enabled
+#         - name: ELASTICSEARCH_SEARCHGUARD_USER
+#           valueFrom:
+#             configMapKeyRef:
+#               name: sysdigcloud-config
+#               key: elasticsearch.user
+#         - name: ELASTICSEARCH_SEARCHGUARD_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: elasticsearch-searchguard
+#               key: SG_PASSWORD
+#         - name: ADDITIONAL_CA_CERTS_PATH
+#           value: /opt/certs/root-ca.pem
+#       volumeMounts:
+#       - name: additional-certs
+#         mountPath: /opt/certs
+#     volumes:
+#     - name: additional-certs
+#       secret:
+#         defaultMode: 420
+#         secretName: ca-certs
