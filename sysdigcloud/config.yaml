@@ -213,6 +213,18 @@ data:
   audit.events.max.events.per.day: "100000"
 
   ####################################
+  # POLICY ADVISOR
+  ####################################
+  padvisor.api.endpoint: "0.0.0.0"
+  padvisor.api.port: "8176"
+  padvisor.backend.url: "http://sysdigcloud-api:8080"
+  padvisor.backend.tlsCheckCertificate: "false"
+  padvisor.mysql.username: "padvisor"
+  padvisor.mysql.database: "padvisor"
+  padvisor.mysql.host: sysdigcloud-mysql
+  padvisor.mysql.port: "3306"
+
+  ####################################
   # ======= BEGIN DEPRECATED LDAP OPTIONS =======
   ####################################
   # NOTE: The following series of LDAP settings are deprecated starting

@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysdigcloud-policy-advisor
+  labels:
+    affinity: sysdigcloud-policy-advisor
+    app: sysdigcloud
+    role: policy-advisor
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  # Replicas can be scaled up as needed.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: policy-advisor
+  template:
+    metadata:
+      labels:
+        app: sysdigcloud
+        role: policy-advisor
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: '/metrics'
+        prometheus.io/port: '8176'
+    spec:
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+        - name: sysdigcloud-pull-secret
+      initContainers:
+        - name: policy-advisor-setup-database
+          image: quay.io/sysdig/padvisor:3.0.0.5309
+          command: ["/padvisor", "--create-mysql-db"]
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /cfg
+          env:
+            - name: PADVISOR_MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sysdigcloud-policy-advisor
+                  key: padvisor.mysql.password
+            - name: PADVISOR_MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sysdigcloud-mysql-root-password
+                  key: mysql.password
+                  optional: true
+      containers:
+        - name: policy-advisor
+          image: quay.io/sysdig/padvisor:3.0.0.5309
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 4
+              memory: 4Gi
+            requests:
+              cpu: 1
+              memory: 1Gi
+          volumeMounts:
+            - name: config
+              mountPath: /cfg
+          env:
+            - name: PADVISOR_MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sysdigcloud-policy-advisor
+                  key: padvisor.mysql.password
+          resources:
+            {}
+      volumes:
+        - name: config
+          configMap:
+            name: sysdigcloud-config
+
