@@ -1,9 +1,16 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sysdigcloud-collector
+  labels:
+    app: sysdigcloud
+    role: collector
 spec:
+  selector:
+    matchLabels:
+      app: sysdigcloud
+      role: collector
   replicas: 1
   template:
     metadata:
@@ -128,7 +135,7 @@ spec:
             name: sysdigcloud-config
         - name: ssl
           secret:
-            secretName: sysdigcloud-ssl-secret-collector
+            secretName: sysdigcloud-ssl-secret
         ## Uncomment this if you need to import self-signed SSL certs
         #- name: java-certs
         #  secret:
