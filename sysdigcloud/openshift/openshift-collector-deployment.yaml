@@ -135,7 +135,7 @@ spec:
             name: sysdigcloud-config
         - name: ssl
           secret:
-            secretName: sysdigcloud-ssl-secret
+            secretName: sysdigcloud-ssl-secret-collector
         ## Uncomment this if you need to import self-signed SSL certs
         #- name: java-certs
         #  secret:
