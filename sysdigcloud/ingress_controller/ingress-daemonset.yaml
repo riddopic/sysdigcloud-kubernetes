@@ -32,7 +32,7 @@ spec:
               cpu: 50m
               memory: 10Mi
         - name: haproxy-ingress
-          image: quay.io/sysdig/haproxy-ingress:v0.7-beta.7
+          image: quay.io/sysdig/haproxy-ingress:v0.7-beta.7.1
           args:
               - --default-backend-service=$(POD_NAMESPACE)/ingress-default-backend
               - --allow-cross-namespace
