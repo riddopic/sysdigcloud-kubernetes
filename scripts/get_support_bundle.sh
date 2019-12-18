@@ -34,7 +34,7 @@ for pod in ${SYSDIGCLOUD_PODS}; do
 done
 
 for object in svc deployment sts pvc daemonset ingress replicaset; do
-    items=$(kubectl ${KUBE_OPTS} get ${object} | awk '{ print $1 }' | grep -v NAME)
+    items=$(kubectl ${KUBE_OPTS} get ${object} -o jsonpath="{.items[*]['metadata.name']}")
     mkdir -p ${LOG_DIR}/${object}
     for item in ${items}; do
         kubectl ${KUBE_OPTS} get ${object} ${item} -o json > ${LOG_DIR}/${object}/${item}-kubectl.json
@@ -48,5 +48,3 @@ tar czf ${BUNDLE_NAME} ${LOG_DIR}
 rm -rf ${LOG_DIR}
 
 echo "Support bundle generated:" ${BUNDLE_NAME}
-
-exit 0
