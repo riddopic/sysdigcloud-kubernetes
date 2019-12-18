@@ -51,8 +51,8 @@ spec:
                   key: padvisor.mysql.password
             - name: PADVISOR_MYSQL_ROOT_PASSWORD
               valueFrom:
-                secretKeyRef:
-                  name: sysdigcloud-mysql-root-password
+                configMapKeyRef:
+                  name: sysdigcloud-config
                   key: mysql.password
                   optional: true
       containers:
