@@ -11,7 +11,7 @@ to your Kubernetes infrastructure.
 
 ## Installation Guide <a id="installation-guide"></a>
 
-[Installation Guide](https://docs.sysdig.com/en/manual-install--kubernetes-.html)
+[Installation Guide](https://docs.sysdig.com/en/on-premises-installation.html)
 
 ## Upgrading to a new version
 
@@ -21,7 +21,7 @@ to your Kubernetes infrastructure.
 
 [Release Bundles](https://github.com/draios/sysdigcloud-kubernetes/releases)
 
-[Release Notes](https://support.sysdig.com/hc/en-us/articles/115002168966-What-s-New-Sysdig-Monitor-Changelog-On-prem-)
+[Release Notes](https://docs.sysdig.com/en/sysdig-on-premises-release-notes.html)
 
 #### Upgrading/Migrating Datastores 
 
