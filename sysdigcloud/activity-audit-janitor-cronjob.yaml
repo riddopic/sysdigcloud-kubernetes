@@ -17,7 +17,7 @@ spec:
           - name: sysdigcloud-pull-secret
           containers:
           - name: activity-audit-janitor
-            image: quay.io/sysdig/activity-audit-janitor:3.0.0.5380
+            image: quay.io/sysdig/activity-audit-janitor:3.0.0.5439
             args:
             - -retention
             - "14"

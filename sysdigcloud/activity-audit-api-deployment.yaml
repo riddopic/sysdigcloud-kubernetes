@@ -31,7 +31,7 @@ spec:
       - name: sysdigcloud-pull-secret
       containers:
       - name: activity-audit-api
-        image: quay.io/sysdig/activity-audit-api:3.0.0.5380
+        image: quay.io/sysdig/activity-audit-api:3.0.0.5439
         resources: {}
         ports:
           - name: api
