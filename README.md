@@ -7,15 +7,15 @@ to your Kubernetes infrastructure.
 
 ## Infrastructure Overview <a id="Infrastructure-Overview"></a>
 
-[Architecture Overview](https://sysdigdocs.atlassian.net/wiki/spaces/Platform/pages/227573777/Pre-Install+Consider+Architecture+Sizing+Requirements)
+[Architecture Overview](https://docs.sysdig.com/en/architecture.html)
 
 ## Installation Guide <a id="installation-guide"></a>
 
-[Installation Guide](https://sysdigdocs.atlassian.net/wiki/spaces/Platform/pages/204669178/Sysdig+Install+with+Kubernetes+1.9+)
+[Installation Guide](https://docs.sysdig.com/en/manual-install--kubernetes-.html)
 
 ## Upgrading to a new version
 
-[Upgrade Notes](https://sysdigdocs.atlassian.net/wiki/spaces/Platform/pages/261783633/On-Premises+Upgrades)
+[Upgrade Notes](https://docs.sysdig.com/en/on-premises-upgrades.html)
 
 ## Releases
 
