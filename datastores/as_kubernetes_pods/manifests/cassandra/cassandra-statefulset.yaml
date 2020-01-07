@@ -138,6 +138,7 @@ spec:
             #   mountPath: /opt/cassandra/cassandra-jvm-opts.json
             #   subPath: cassandra-jvm-opts.json
             #############################################
+      terminationGracePeriodSeconds: 120
       imagePullSecrets:
         - name: sysdigcloud-pull-secret
       ### Start of the custom Cassandra snitch group
