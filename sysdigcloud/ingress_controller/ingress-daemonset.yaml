@@ -21,7 +21,7 @@ spec:
       containers:
         # When we upgrade to an ingress controller with HAProxy 1.9 we should
         # remove this and use HAProxy's logging to stdout functionality
-        - image: "quay.io/sysdig/rsyslog:8.34.0.6"
+        - image: "quay.io/sysdig/rsyslog:8.34.0.7"
           imagePullPolicy: Always
           name: rsyslog-server
           resources:
@@ -32,7 +32,7 @@ spec:
               cpu: 50m
               memory: 10Mi
         - name: haproxy-ingress
-          image: quay.io/sysdig/haproxy-ingress:v0.7-beta.7
+          image: quay.io/sysdig/haproxy-ingress:v0.7-beta.7.1
           args:
               - --default-backend-service=$(POD_NAMESPACE)/ingress-default-backend
               - --allow-cross-namespace

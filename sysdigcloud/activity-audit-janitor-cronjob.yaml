@@ -1,0 +1,59 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sysdigcloud-activity-audit-janitor
+  labels:
+    app: sysdigcloud
+    role: activity-audit-janitor
+spec:
+  schedule: "0 */12 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: sysdigcloud-pull-secret
+          containers:
+          - name: activity-audit-janitor
+            image: quay.io/sysdig/activity-audit-janitor:3.0.0.5439
+            args:
+            - -retention
+            - "14"
+            - -threshold
+            - "1000000"
+            - -yes
+            env:
+            - name: ELASTICSEARCH_ENDPOINTS
+              valueFrom:
+                configMapKeyRef:
+                  name: sysdigcloud-config
+                  key: activityaudit.elasticsearch.endpoints
+#         - name: ELASTICSEARCH_TLS_SKIP_CHECK
+#           value: "yes"
+#         - name: ELASTICSEARCH_SEARCHGUARD_ENABLED
+#           valueFrom:
+#             configMapKeyRef:
+#               name: sysdigcloud-config
+#               key: elasticsearch.searchguard.enabled
+#         - name: ELASTICSEARCH_SEARCHGUARD_USER
+#           valueFrom:
+#             configMapKeyRef:
+#               name: sysdigcloud-config
+#               key: elasticsearch.user
+#         - name: ELASTICSEARCH_SEARCHGUARD_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: elasticsearch-searchguard
+#               key: SG_PASSWORD
+#         - name: ADDITIONAL_CA_CERTS_PATH
+#           value: /opt/certs/root-ca.pem
+#       volumeMounts:
+#       - name: additional-certs
+#         mountPath: /opt/certs
+#     volumes:
+#     - name: additional-certs
+#       secret:
+#         defaultMode: 420
+#         secretName: ca-certs

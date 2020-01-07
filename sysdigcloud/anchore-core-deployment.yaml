@@ -37,7 +37,7 @@ spec:
         #     secretName: sysdigcloud-anchore-custom-certs
       containers:
       - name: anchore-core
-        image: quay.io/sysdig/anchore:0.5.0.1
+        image: quay.io/sysdig/anchore:0.5.1.2
         imagePullPolicy:
         resources:
           {}
