@@ -28,6 +28,10 @@ data:
       policy_eval:
         url: 'http://sysdigcloud-scanning-alertmgr/api/scanning/v1/anchore-notifications/policy_eval/<userId>'
     feeds:
+      url: http://feeds-svc:7000/v1/feeds 
+      client_url:
+      token_url:
+      require_auth: false
       selective_sync:
         enabled: True
         feeds:
