@@ -28,7 +28,7 @@ LICENSE="PLACEHOLDER"
 DNSNAME="PLACEHOLDER"
 AIRGAP_BUILD="false"
 AIRGAP_INSTALL="false"
-INSTALLER_IMAGE="quay.io/sysdig/installer:3.0.0-5"
+INSTALLER_IMAGE="quay.io/sysdig/installer:3.0.0-6"
 
 function writeValuesYaml() {
   cat << EOM > values.yaml
