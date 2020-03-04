@@ -31,7 +31,7 @@ spec:
       - name: sysdigcloud-pull-secret
       containers:
       - name: activity-audit-worker
-        image: quay.io/sysdig/activity-audit-worker:3.0.0.5439
+        image: quay.io/sysdig/activity-audit-worker:3.2.0.5799
         ports:
           - name: metrics
             containerPort: 25000

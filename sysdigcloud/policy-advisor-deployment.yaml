@@ -37,7 +37,7 @@ spec:
         - name: sysdigcloud-pull-secret
       initContainers:
         - name: policy-advisor-setup-database
-          image: quay.io/sysdig/padvisor:3.0.0.5439
+          image: quay.io/sysdig/padvisor:3.2.0.5799
           command: ["/padvisor", "--create-mysql-db"]
           imagePullPolicy: IfNotPresent
           volumeMounts:
@@ -57,7 +57,7 @@ spec:
                   optional: true
       containers:
         - name: policy-advisor
-          image: quay.io/sysdig/padvisor:3.0.0.5439
+          image: quay.io/sysdig/padvisor:3.2.0.5799
           imagePullPolicy: IfNotPresent
           resources:
             limits:
