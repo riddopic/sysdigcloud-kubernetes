@@ -28,3 +28,4 @@ to your Kubernetes infrastructure.
 PLEASE NOTE: At this time HA upgrades are a beta feature.
 
 Supported [migrations](https://github.com/draios/sysdigcloud-kubernetes/tree/master/migrations) are in a set of directories, one for each datastore.
+
