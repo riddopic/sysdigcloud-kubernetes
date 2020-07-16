@@ -1,6 +1,6 @@
 # Deprecation Note
 
-Starting version 3.5.0, installation using this repository files has been deprecated and all installations and upgrades should be performed using the installer tool. Please refer to our [official docs](https://docs.sysdig.com/en/on-premises-installation.html).
+Please note version 3.5.0 and greater, install using this repository is not supported. Please refer to installer documentation for installation [official docs](https://docs.sysdig.com/en/on-premises-installation.html).
 
 # sdc-kubernetes: Sysdig Platform deployment on Kubernetes
 
