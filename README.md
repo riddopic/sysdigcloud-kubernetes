@@ -1,3 +1,7 @@
+# Deprecation Note
+
+Starting version 3.5.0, installation using this repository files has been deprecated and all installations and upgrades should be performed using the installer tool. Please refer to our [official docs](https://docs.sysdig.com/en/on-premises-installation.html).
+
 # sdc-kubernetes: Sysdig Platform deployment on Kubernetes
 
 [Sysdig](https://sysdig.com/) is the the first unified approach to container security, monitoring and forensics.
